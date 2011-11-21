@@ -1,0 +1,192 @@
+
+
+Started GET "/" for 71.36.69.34 at 2011-11-21 02:40:04 -0700
+  Processing by SongsController#index as HTML
+  [1m[36mSong Load (3.2ms)[0m  [1mSELECT "songs".* FROM "songs"[0m
+SQLite3::SQLException: no such table: songs: SELECT "songs".* FROM "songs"
+Completed   in 113ms
+
+ActiveRecord::StatementInvalid (SQLite3::SQLException: no such table: songs: SELECT "songs".* FROM "songs"):
+  app/controllers/songs_controller.rb:3:in `index'
+
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (6.3ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.8ms)
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (2.3ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (1.1ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.1ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateSongs (20110505100149)
+  [1m[36mSQL (0.4ms)[0m  [1mCREATE TABLE "songs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20110505100149')
+Migrating to AddAttachmentWavToSong (20110505100229)
+  [1m[36mSQL (0.3ms)[0m  [1mALTER TABLE "songs" ADD "wav_file_name" varchar(255)[0m
+  [1m[35mSQL (0.2ms)[0m  ALTER TABLE "songs" ADD "wav_content_type" varchar(255)
+  [1m[36mSQL (0.2ms)[0m  [1mALTER TABLE "songs" ADD "wav_file_size" integer[0m
+  [1m[35mSQL (0.2ms)[0m  ALTER TABLE "songs" ADD "wav_updated_at" datetime
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20110505100229')[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("songs")[0m
+
+
+Started GET "/" for 71.36.69.34 at 2011-11-21 02:40:48 -0700
+  Processing by SongsController#index as HTML
+  [1m[36mSong Load (0.6ms)[0m  [1mSELECT "songs".* FROM "songs"[0m
+Rendered songs/index.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 107ms (Views: 6.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/songs/new" for 71.36.69.34 at 2011-11-21 02:40:54 -0700
+  Processing by SongsController#new as HTML
+Rendered songs/_form.html.erb (65.4ms)
+Rendered songs/new.html.erb within layouts/application (69.3ms)
+Completed 200 OK in 93ms (Views: 74.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/songs" for 71.36.69.34 at 2011-11-21 02:41:02 -0700
+  Processing by SongsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AFGYWUkLE0VOYVAXQY1SnxgP+bdlhC1fnM6WTJmITAA=", "song"=>{"title"=>"Sup b", "wav"=>#<ActionDispatch::Http::UploadedFile:0xb2b2ea0 @original_filename="cape_fear_1962_dregs.wav", @content_type="audio/wav", @headers="Content-Disposition: form-data; name=\"song[wav]\"; filename=\"cape_fear_1962_dregs.wav\"\r\nContent-Type: audio/wav\r\n", @tempfile=#<File:/tmp/RackMultipart20111121-14169-2709q7>>}}
+[32mCommand[0m :: lame -q1 -b 320 '/tmp/stream20111121-14169-1lm9s15.wav' '/tmp/stream20111121-14169-1lm9s1520111121-14169-1pfp4yu.mp3'
+Completed   in 100ms
+
+NameError (uninitialized constant Paperclip::WavMp3::PaperclipCommandLineError):
+  app/controllers/songs_controller.rb:15:in `new'
+  app/controllers/songs_controller.rb:15:in `create'
+
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.9ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.4ms)
+
+
+Started GET "/songs/new" for 71.36.69.34 at 2011-11-21 02:41:56 -0700
+  Processing by SongsController#new as HTML
+Rendered songs/_form.html.erb (68.8ms)
+Rendered songs/new.html.erb within layouts/application (74.1ms)
+Completed 200 OK in 101ms (Views: 79.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/songs" for 71.36.69.34 at 2011-11-21 02:42:03 -0700
+  Processing by SongsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AFGYWUkLE0VOYVAXQY1SnxgP+bdlhC1fnM6WTJmITAA=", "song"=>{"title"=>"sdfsdf", "wav"=>#<ActionDispatch::Http::UploadedFile:0x8a8d844 @original_filename="cape_fear_1962_dregs.wav", @content_type="audio/wav", @headers="Content-Disposition: form-data; name=\"song[wav]\"; filename=\"cape_fear_1962_dregs.wav\"\r\nContent-Type: audio/wav\r\n", @tempfile=#<File:/tmp/RackMultipart20111121-14269-1sv1va4>>}}
+[32mCommand[0m :: lame -q1 -b 320 '/tmp/stream20111121-14269-i95hc6.wav' '/tmp/stream20111121-14269-i95hc620111121-14269-1f346h0.mp3'
+Completed   in 120ms
+
+NameError (uninitialized constant Paperclip::WavMp3::PaperclipCommandLineError):
+  app/controllers/songs_controller.rb:15:in `new'
+  app/controllers/songs_controller.rb:15:in `create'
+
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.0ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.9ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (20.0ms)
+
+
+Started POST "/songs" for 71.36.69.34 at 2011-11-21 02:45:47 -0700
+  Processing by SongsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AFGYWUkLE0VOYVAXQY1SnxgP+bdlhC1fnM6WTJmITAA=", "song"=>{"title"=>"sdfsdf", "wav"=>#<ActionDispatch::Http::UploadedFile:0x974d8b8 @original_filename="cape_fear_1962_dregs.wav", @content_type="audio/wav", @headers="Content-Disposition: form-data; name=\"song[wav]\"; filename=\"cape_fear_1962_dregs.wav\"\r\nContent-Type: audio/wav\r\n", @tempfile=#<File:/tmp/RackMultipart20111121-14269-bpdw64>>}}
+[32mCommand[0m :: lame -q1 -b 320 '/tmp/stream20111121-14269-v74iu6.wav' '/tmp/stream20111121-14269-v74iu620111121-14269-rcebci.mp3'
+Completed   in 136ms
+
+NameError (uninitialized constant Paperclip::WavMp3::PaperclipCommandLineError):
+  app/controllers/songs_controller.rb:15:in `new'
+  app/controllers/songs_controller.rb:15:in `create'
+
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.7ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (8.8ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (17.6ms)
+
+
+Started POST "/songs" for 71.36.69.34 at 2011-11-21 02:47:21 -0700
+  Processing by SongsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AFGYWUkLE0VOYVAXQY1SnxgP+bdlhC1fnM6WTJmITAA=", "song"=>{"title"=>"sdfsdf", "wav"=>#<ActionDispatch::Http::UploadedFile:0x8b73b78 @original_filename="1InALife.wav", @content_type="audio/wav", @headers="Content-Disposition: form-data; name=\"song[wav]\"; filename=\"1InALife.wav\"\r\nContent-Type: audio/wav\r\n", @tempfile=#<File:/tmp/RackMultipart20111121-14269-k7elfs>>}}
+[32mCommand[0m :: lame -q1 -b 320 '/tmp/stream20111121-14269-14guqx5.wav' '/tmp/stream20111121-14269-14guqx520111121-14269-tffoc8.mp3'
+Completed   in 150ms
+
+NameError (uninitialized constant Paperclip::WavMp3::PaperclipCommandLineError):
+  app/controllers/songs_controller.rb:15:in `new'
+  app/controllers/songs_controller.rb:15:in `create'
+
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.9ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (9.7ms)
+Rendered /home/dryder/.rvm/gems/ruby-1.9.2-p290@transcoder/gems/actionpack-3.0.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (18.9ms)
+
+
+Started GET "/songs/new" for 71.36.69.34 at 2011-11-21 03:07:09 -0700
+  Processing by SongsController#new as HTML
+Rendered songs/_form.html.erb (73.7ms)
+Rendered songs/new.html.erb within layouts/application (78.7ms)
+Completed 200 OK in 102ms (Views: 84.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/songs" for 71.36.69.34 at 2011-11-21 03:07:17 -0700
+  Processing by SongsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"AFGYWUkLE0VOYVAXQY1SnxgP+bdlhC1fnM6WTJmITAA=", "song"=>{"title"=>"asdfg", "wav"=>#<ActionDispatch::Http::UploadedFile:0xac85b40 @original_filename="4352754916_4352157054_4357671543_20111107-175650.wav", @content_type="audio/wav", @headers="Content-Disposition: form-data; name=\"song[wav]\"; filename=\"4352754916_4352157054_4357671543_20111107-175650.wav\"\r\nContent-Type: audio/wav\r\n", @tempfile=#<File:/tmp/RackMultipart20111121-14630-nug1z8>>}}
+[32mCommand[0m :: lame -q1 -b 320 '/tmp/stream20111121-14630-16imz64.wav' '/tmp/stream20111121-14630-16imz6420111121-14630-5n00p8.mp3'
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mAREL (9.6ms)[0m  INSERT INTO "songs" ("title", "created_at", "updated_at", "wav_file_name", "wav_content_type", "wav_file_size", "wav_updated_at") VALUES ('asdfg', '2011-11-21 10:07:19.195067', '2011-11-21 10:07:19.195067', '4352754916_4352157054_4357671543_20111107-175650.wav', 'audio/wav', 1539884, '2011-11-21 10:07:18.005180')
+[paperclip] Saving attachments.
+[paperclip] saving /home/dryder/source/ahn-transcoder/public/system/wavs/1/original/4352754916_4352157054_4357671543_20111107-175650.wav
+[paperclip] saving /home/dryder/source/ahn-transcoder/public/system/wavs/1/mp3/4352754916_4352157054_4357671543_20111107-175650.mp3
+Redirected to http://libryder.com:3000/songs/1
+Completed 302 Found in 1467ms
+
+
+Started GET "/songs/1" for 71.36.69.34 at 2011-11-21 03:07:19 -0700
+  Processing by SongsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSong Load (0.3ms)[0m  [1mSELECT "songs".* FROM "songs" WHERE "songs"."id" = 1 LIMIT 1[0m
+Rendered songs/show.html.erb within layouts/application (14.5ms)
+Completed 200 OK in 38ms (Views: 20.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/songs" for 71.36.69.34 at 2011-11-21 03:08:31 -0700
+  Processing by SongsController#index as HTML
+  [1m[35mSong Load (0.5ms)[0m  SELECT "songs".* FROM "songs"
+Rendered songs/index.html.erb within layouts/application (23.8ms)
+Completed 200 OK in 44ms (Views: 28.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/songs/1" for 71.36.69.34 at 2011-11-21 03:08:33 -0700
+  Processing by SongsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mSong Load (0.2ms)[0m  [1mSELECT "songs".* FROM "songs" WHERE "songs"."id" = 1 LIMIT 1[0m
+Rendered songs/show.html.erb within layouts/application (48.4ms)
+Completed 200 OK in 73ms (Views: 53.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/songs" for 71.36.69.34 at 2011-11-21 03:23:04 -0700
+  Processing by SongsController#index as HTML
+  [1m[36mSong Load (1.0ms)[0m  [1mSELECT "songs".* FROM "songs"[0m
+Rendered songs/index.html.erb within layouts/application (41.8ms)
+Completed 200 OK in 145ms (Views: 46.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/songs/1" for 71.36.69.34 at 2011-11-21 03:23:07 -0700
+  Processing by SongsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSong Load (0.1ms)[0m  [1mSELECT "songs".* FROM "songs" WHERE "songs"."id" = 1 LIMIT 1[0m
+Rendered songs/show.html.erb within layouts/application (44.5ms)
+Completed 200 OK in 70ms (Views: 49.5ms | ActiveRecord: 0.3ms)
